@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,300&display=swap");
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+.list-shown {
+    display: flex;
+    flex-direction: row;
+}
