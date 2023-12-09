@@ -17,25 +17,9 @@ class RatingController extends Controller
      */
     public function index()
     {
-    
-        // $authorList= DB::table('books')
-        //      ->select('author_id')
-        //     //  ->distinct()
-        //      ->get();
+        // $author = Author::all();
+        $author = Author::orderBy('author_name')->get();
 
-        // $author= Book::select('author_id')
-        //  ->distinct()
-        // ->get();
-
-        // $author= Book::distinct()->pluck('author_id');
-        //  $authorList = Author::whereIn('author_id', $author)->get();
-    
-           $author = Author::all();
-        //   $authorList = Book::pluck('author_id')->unique()->all();
-        //  $authorList = Author::whereIn('id', Book::pluck('author_id')->unique()->all())->get();
-
-
-        // $author = Book::select('author_id')->get();
         return view('rating', [
             'author'=> $author,
             'active' => 'book',
@@ -46,9 +30,6 @@ class RatingController extends Controller
      */
     public function getBook($author_id)
     {
-        // $bukus = Book::where('author_id', $author_id)->get();
-        // return response()->json($bukus);
-
         $book = Book::where('author_id', $author_id)->get();
         return response()->json($book);
 
@@ -59,14 +40,9 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        // $book_id = $request->book_id;
-        // $rating = $request->rating;
-
-
         $ratings = new Rating();
         $ratings-> book_id=$request->input('book');
         $ratings-> the_rating=$request->input('the_rating');
-        // $ratings-> ratings=$request->input('the_rating');
         $ratings->save();
 
         $averageRatings = Rating::select('book_id', DB::raw('AVG(the_rating) as average_rating'))

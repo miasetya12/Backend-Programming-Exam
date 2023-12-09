@@ -8,52 +8,50 @@
     <link rel="stylesheet" href="{{url('/css/user/styles.css')}}">   
     @stack('css')
     
-    <title>Book</title>
+    <title>Famous Author</title>
 </head>
-<body> 
-        <div class="container text-left mt-5">
-            <div class="row ">
-                <div class="col-5">
-                    <a href="{{ url('/')}}" class='btn btn-light'>Back</a>
-                </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="container text-center mt-3 ">
-          <div class="row ">
-              <div class="col-12">
-                  <h1 style="font-weight: bold">Top 10 Most Famous Author</h1>
-              </div>
+<body> 
+  <div class="container text-left mt-5">
+      <div class="row ">
+          <div class="col-5">
+              <a href="{{ url('/')}}" class='btn btn-light'>Back</a>
           </div>
       </div>
-
-     <div class="container text-left mt-4 "  style="max-width: 500px;">
-        <table class="table">
-            <thead>
-              <tr>
-                <th >No</th>
-                <th >Author Name</th>
-                <th >Voter</th>
-              </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                <?php $i = 1 ?>
-                @foreach ($book as $b)
-                <tr>
-                    <td>{{ $i++ }}</td>
-                    <td>{{ $b->author->author_name }}</td>
-                    <td>{{ $b->total_voter  }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-          </table>
     </div>
+  </div>
 
-  
+  <div class="container text-center mt-3 ">
+    <div class="row ">
+        <div class="col-12">
+            <h1 style="font-weight: bold">Top 10 Most Famous Author</h1>
+        </div>
+    </div>
+</div>
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <div class="container text-left mt-4 "  style="max-width: 500px;">
+    <table class="table">
+        <thead>
+          <tr>
+            <th >No</th>
+            <th >Author Name</th>
+            <th >Voter</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <?php $i = 1 ?>
+            @foreach ($book as $b)
+            <tr>
+                <td>{{ $i++ }}</td>
+                <td>{{ $b->author->author_name }}</td>
+                <td>{{ $b->total_voter  }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+      </table>
+  </div>
 
-        @stack('script')
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  @stack('script')
 </body>
 </html>

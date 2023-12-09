@@ -22,18 +22,7 @@ class BookFactory extends Factory
      protected $model = Book::class;
     public function definition(): array
     {   
-        // $author = DB::table('authors')->inRandomOrder()->first();
-        // $category = DB::table('categories')->inRandomOrder()->first();
-        // if ($author) {
-        //     if (property_exists($author, 'author_id')) {
-        //         $authorId = $author->author_id;
-        //         // Gunakan $penulisId sesuai kebutuhan Anda
-        //     } 
-        // // }
-        // static $number = 1;
-
         return [
-            // 'book_id'=>$number++,
             'book_name'=>$this->faker->sentence(),
             'author_id' => $this->faker->numberBetween(1, 100),
             'category_id' => $this->faker->numberBetween(1, 300),

@@ -36,26 +36,21 @@ class BookController extends Controller
         ->groupBy('book_id')
         ->get();
 
-            foreach ($voters as $voter) {
-               $book = Book::find($voter->book_id);
-               if ($book) {
-                   $book->voter = $voter->voter;
-                   $book->save();
-               }
+        foreach ($voters as $voter) {
+        $book = Book::find($voter->book_id);
+            if ($book) {
+                $book->voter = $voter->voter;
+                $book->save();
+            }
            }
 
-        // $book = Book::orderBy('average_rating', 'desc')->take(10)->get(); ;
-
-        $book = Book::where('voter', '>', 2) // Hanya ambil buku dengan minimal 1 voter
+        $book = Book::where('voter', '>', 2)
             ->orderBy('average_rating', 'desc')
             ->take(10)
             ->get();
             
         return view('main', [
             'book'=> $book,
-            //  'voter'=>$voter,
-            // 'averageRating'=> $averageRating,
-            // 'author' =>$author,
             'active' => 'book',
         ]);
     }
@@ -63,10 +58,7 @@ class BookController extends Controller
 
     public function famous()
     {
-        $voters = Rating::all()->count();
-
         $voters= Rating::select('book_id', DB::raw('count(*) as voter'))
-        
         ->where('the_rating', '>', 5)
         ->groupBy('book_id')
         ->get();
@@ -94,18 +86,10 @@ class BookController extends Controller
     }
 
 
-
-
-
-
-
-  /**
-     * Show the form for creating a new resource.
-     */
     public function test(Request $request)
     {
         $search = $request->input('search');
-         $filter = $request->input('filter');
+        $filter = $request->input('filter');
      
 
         $book = Book::where(function ($query) use ($search) {

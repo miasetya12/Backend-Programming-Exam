@@ -24,11 +24,6 @@ class Book extends Model
         
     ];
 
-    // public function category()
-    // {
-    //     return $this->belongsTo(Category::class);
-    // }
-
     public function author()
     {
         return $this->belongsTo(Author::class, 'author_id');
@@ -42,32 +37,5 @@ class Book extends Model
     {
         return $this->hasMany(Rating::class);
     }
-    
-    // public function averageRating()
-    // {
-    //     return $this->ratings()->avg('the_rating');
-    // }
-
-    public function recalculateAverageRating()
-{
-    $averageRating = $this->ratings()->avg('the_rating');
-    $this->average_rating = $averageRating;
-    $this->save();
-}
-
-// dalam BookController.php
-// public function getAuthors()
-// {
-//     $authors = Book::select('author_id')->distinct()->get();
-//     return response()->json($authors);
-// }
-
-// public function getBooksByAuthor($author)
-// {
-//     $books = Book::where('author_id', $author)->get();
-//     return response()->json($books);
-// }
-
-
-
+   
 }
